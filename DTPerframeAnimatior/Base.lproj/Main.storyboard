@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VlY-XG-dbF">
+                                <rect key="frame" x="18" y="752" width="378" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="9HE-4V-Bug"/>
+                                </connections>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dpk-F8-dez">
+                                <rect key="frame" x="167" y="144" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="0fS-ye-ZjG"/>
+                                    <constraint firstAttribute="height" constant="80" id="rS0-ol-3qh"/>
+                                </constraints>
+                                <state key="normal" title="Pause"/>
+                                <connections>
+                                    <action selector="pauseClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lEh-TZ-8aA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPx-vs-DZv">
+                                <rect key="frame" x="314" y="144" width="80" height="80"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="resetClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Fd-k1-W72"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ahu-i8-nV5">
+                                <rect key="frame" x="157" y="284" width="100" height="100"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="hFi-nR-NwY"/>
+                                    <constraint firstAttribute="height" constant="100" id="sXZ-Ny-xsi"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3H-y0-AEh">
+                                <rect key="frame" x="20" y="144" width="80" height="80"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Eb-Qs-x6O"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="l3H-y0-AEh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="3Hp-H7-wub"/>
+                            <constraint firstItem="ahu-i8-nV5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7Dv-R6-vIf"/>
+                            <constraint firstItem="VlY-XG-dbF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="8jb-QL-kEb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VlY-XG-dbF" secondAttribute="trailing" constant="20" id="KyI-Av-wEr"/>
+                            <constraint firstItem="KPx-vs-DZv" firstAttribute="top" secondItem="l3H-y0-AEh" secondAttribute="top" id="LaL-eq-MFh"/>
+                            <constraint firstItem="KPx-vs-DZv" firstAttribute="height" secondItem="l3H-y0-AEh" secondAttribute="height" id="Nim-UV-ijW"/>
+                            <constraint firstItem="KPx-vs-DZv" firstAttribute="width" secondItem="l3H-y0-AEh" secondAttribute="width" id="OeC-gJ-xsD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VlY-XG-dbF" secondAttribute="bottom" constant="80" id="OzP-9O-gwq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KPx-vs-DZv" secondAttribute="trailing" constant="20" id="cJk-RC-wzl"/>
+                            <constraint firstItem="Dpk-F8-dez" firstAttribute="width" secondItem="l3H-y0-AEh" secondAttribute="width" id="dEw-22-20r"/>
+                            <constraint firstItem="ahu-i8-nV5" firstAttribute="top" secondItem="Dpk-F8-dez" secondAttribute="bottom" constant="60" id="gHE-lg-Qx4"/>
+                            <constraint firstItem="Dpk-F8-dez" firstAttribute="top" secondItem="l3H-y0-AEh" secondAttribute="top" id="iLt-sH-BZj"/>
+                            <constraint firstItem="Dpk-F8-dez" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iRQ-WZ-E0D"/>
+                            <constraint firstItem="Dpk-F8-dez" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="mkl-Rz-Euu"/>
+                            <constraint firstItem="Dpk-F8-dez" firstAttribute="height" secondItem="l3H-y0-AEh" secondAttribute="height" id="mmv-Md-X64"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="slider" destination="VlY-XG-dbF" id="YRD-NC-hgY"/>
+                        <outlet property="widthConstraint" destination="hFi-nR-NwY" id="V8Y-ae-aH7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="135.9375"/>
+        </scene>
+    </scenes>
+</document>
