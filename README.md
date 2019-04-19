@@ -1,9 +1,9 @@
 # DTPerframeAnimatior
-simple perframe animation tool that control animation progress
+Simple perframe animation tool that control animation progress.
 
 # Usage
 
-## creation
+## Creation
 ```
 _animator = [DTPerframeAnimatior animateWithDuration:5 animations:^(CGFloat progress) {
             self.widthConstraint.constant = 100 + 200 * progress;
@@ -13,24 +13,25 @@ _animator = [DTPerframeAnimatior animateWithDuration:5 animations:^(CGFloat prog
         }];        
         
 ```
-## pause/start
+## Pause/Continue
 
 ```
 _animator.paused = YES; or _animator.paused = NO;
 ```
 
-## control progress
+## Control progress
 
 ```
 _animator.paused = YES;
 _animator.progress = 0.5;
 ```
-## reverse progress increasing
+## Reverse progress increasing
 
 ```
 _animator.progressDirection = DTPerframeAnimatiorDirectionBackward;
 ```
-
+#Example timeline
+![timeline](https://github.com/NicolasKim/DTPerframeAnimatior/blob/master/timeline.png)
 # Demo
 ![ScreenRecord](https://github.com/NicolasKim/DTPerframeAnimatior/blob/master/1555462981382.gif)
 
