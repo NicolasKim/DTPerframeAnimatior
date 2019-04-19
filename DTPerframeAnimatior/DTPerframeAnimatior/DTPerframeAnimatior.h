@@ -10,9 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum : NSUInteger {
+    DTPerframeAnimatiorDirectionForward,
+    DTPerframeAnimatiorDirectionBackward,
+} DTPerframeAnimatiorDirection;
+
 typedef void(^DTPerframeAnimatiorAnimationHandle)(CGFloat);
 
 typedef void(^DTPerframeAnimatiorAnimationComplete)(void);
+
+
 
 @interface DTPerframeAnimatior : NSObject
 
@@ -26,6 +33,11 @@ typedef void(^DTPerframeAnimatiorAnimationComplete)(void);
  control animation progress  value[0.0~1.0]
  */
 @property (nonatomic,assign)CGFloat progress;
+
+/**
+ progress direction
+ */
+@property (nonatomic,assign)DTPerframeAnimatiorDirection progressDirection;
 
 
 /**

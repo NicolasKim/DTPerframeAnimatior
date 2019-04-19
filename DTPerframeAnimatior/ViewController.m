@@ -33,9 +33,19 @@
 }
 - (IBAction)startClick:(id)sender {
     if (!_animator) {
-        _animator = [DTPerframeAnimatior animateWithDuration:5 animations:^(CGFloat progress) {
-            self.widthConstraint.constant = 100 + 200 * progress;
-            [self.slider setValue:progress];
+        _animator = [DTPerframeAnimatior animateWithDuration:10 animations:^(CGFloat progress) {
+            
+//            NSLog(@"%@  --- %lf",direction == DTPerframeAnimatiorDirectionForward ? @"forward" : @"backward",progress);
+            
+            
+//            if (direction == DTPerframeAnimatiorDirectionForward) {
+                self.widthConstraint.constant = 100 + 200 * progress;
+                [self.slider setValue:progress];
+//            } else {
+//                self.widthConstraint.constant = 100 + 200 * progress;
+//                [self.slider setValue:progress];
+//            }
+            
         } completion:^{
             NSLog(@"complete");
         }];
@@ -50,6 +60,10 @@
     _animator.progress = 0;
 }
 
+- (IBAction)directionChange:(UIButton *)sender {
+    _animator.progressDirection = sender.selected ? DTPerframeAnimatiorDirectionForward: DTPerframeAnimatiorDirectionBackward;
+    sender.selected = !sender.selected;
+}
 
 
 

@@ -16,7 +16,10 @@
 @end
 
 @interface _DTPerframeAnimatiorTarget : NSObject
-
+{
+    CGFloat _tmpProgress;
+    CFTimeInterval _tmpStartTime;
+}
 @property (nonatomic,assign)NSTimeInterval duration;
 
 @property (nonatomic,assign)CFTimeInterval startTimeInterval;
@@ -32,6 +35,8 @@
 
 @property (nonatomic,weak)id<_DTPerframeAnimatiorTargetDelegate> delegate;
 
+@property (nonatomic,assign)DTPerframeAnimatiorDirection progressDirection;
+
 -(void)handleDisplayLink:(CADisplayLink *)displayLink;
 
 @end
@@ -46,48 +51,91 @@
     return self;
 }
 -(void)handleDisplayLink:(CADisplayLink *)displayLink{
-    
-    CFTimeInterval passedTime 	 = (CACurrentMediaTime() - self.startTimeInterval);
-    CFTimeInterval passedPercent = passedTime / self.duration;
-    CFTimeInterval percent = passedPercent;//-cos(passedPercent * (M_PI/2))+1;//-0.5*cos(M_PI*passedPercent)+0.5;
-    _progress = percent;
-    if (percent >= 1.0) {
-        percent = 1.0;
-        displayLink.paused = YES;
+    if (_tmpStartTime == 0.0) {
+        _tmpStartTime = CACurrentMediaTime();
+    }
+
+    if (self.progressDirection == DTPerframeAnimatiorDirectionForward) {
+        _progress = (_tmpProgress / tan(M_PI_4) * self.duration + (CACurrentMediaTime() - _tmpStartTime))/self.duration * tan(M_PI_4);
     } else {
-        
+        _progress = (_tmpProgress / tan(M_PI_4) * self.duration - (CACurrentMediaTime() - _tmpStartTime))/self.duration * tan(M_PI_4);
     }
     
+    
+    if (_progress < 0) {
+        _progress = 0.0;
+        displayLink.paused = YES;
+        _tmpProgress = _progress;
+        _tmpStartTime = 0.0;
+    } else if (_progress > 1.0) {
+        _progress = 1.0;
+        displayLink.paused = YES;
+        _tmpProgress = _progress;
+        _tmpStartTime = 0.0;
+    }
     
     if (self.animationHandle) {
-        self.animationHandle(percent);
+        self.animationHandle(self.progress);
     }
     
-    if (percent == 1.0) {
+    if (self.animationHandle) {
+        self.animationHandle(self.progress);
+    }
+    
+    if (self.progress == 0.0 && self.progressDirection == DTPerframeAnimatiorDirectionBackward) {
         if (self.animationComplete) {
             self.animationComplete();
         }
-        [self.delegate animationDidFinished];
+    }
+    
+    if (self.progress == 1.0 && self.progressDirection == DTPerframeAnimatiorDirectionForward) {
+        if (self.animationComplete) {
+            self.animationComplete();
+        }
     }
 }
+
+-(void)setProgressDirection:(DTPerframeAnimatiorDirection)progressDirection{
+    if (_progressDirection != progressDirection) {
+    	_progressDirection = progressDirection;
+        _tmpProgress = self.progress;
+        _tmpStartTime = CACurrentMediaTime();
+    }
+}
+
 
 -(void)setProgress:(CGFloat)progress{
     if (progress > 1.0) {
         progress = 1.0;
+        
+    } else if(progress < 0.0) {
+        progress = 0.0;
     }
+    
+    _tmpProgress = progress;
+    _tmpStartTime = 0.0;
+    
     _progress = progress;
-    
-    
+
     if (self.animationHandle) {
         self.animationHandle(progress);
     }
     
-    if (progress == 1.0) {
+    if (progress == 0.0 && self.progressDirection == DTPerframeAnimatiorDirectionBackward) {
         if (self.animationComplete) {
             self.animationComplete();
         }
-        [self.delegate animationDidFinished];
     }
+    
+    if (progress == 1.0 && self.progressDirection == DTPerframeAnimatiorDirectionForward) {
+        if (self.animationComplete) {
+            self.animationComplete();
+        }
+    }
+}
+
+-(void)setTempStartTime:(CFTimeInterval)time{
+    _tmpStartTime = time;
 }
 
 -(void)dealloc{
@@ -113,9 +161,14 @@
         }
     }
     else{
-        self.target.startTimeInterval = CACurrentMediaTime() - self.target.duration * self.target.progress;
+        [self setProgress:self.progress];
         self.displayLink.paused = NO;
     }
+}
+
+-(void)setProgressDirection:(DTPerframeAnimatiorDirection)progressDirection{
+    _progressDirection = progressDirection;
+    self.target.progressDirection = progressDirection;
 }
 
 -(void)setProgress:(CGFloat)progress{

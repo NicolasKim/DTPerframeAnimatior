@@ -57,6 +57,18 @@
                                     <action selector="startClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Eb-Qs-x6O"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2F-55-WeA">
+                                <rect key="frame" x="157" y="471" width="100" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="iQR-cs-QBC"/>
+                                    <constraint firstAttribute="width" constant="100" id="k1V-Eh-3yd"/>
+                                </constraints>
+                                <state key="normal" title="Forward"/>
+                                <state key="selected" title="Backward"/>
+                                <connections>
+                                    <action selector="directionChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eTv-tj-n8g"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -68,7 +80,9 @@
                             <constraint firstItem="KPx-vs-DZv" firstAttribute="height" secondItem="l3H-y0-AEh" secondAttribute="height" id="Nim-UV-ijW"/>
                             <constraint firstItem="KPx-vs-DZv" firstAttribute="width" secondItem="l3H-y0-AEh" secondAttribute="width" id="OeC-gJ-xsD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VlY-XG-dbF" secondAttribute="bottom" constant="80" id="OzP-9O-gwq"/>
+                            <constraint firstItem="b2F-55-WeA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="acr-dH-fxL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KPx-vs-DZv" secondAttribute="trailing" constant="20" id="cJk-RC-wzl"/>
+                            <constraint firstItem="b2F-55-WeA" firstAttribute="top" secondItem="ahu-i8-nV5" secondAttribute="bottom" constant="87" id="dEp-zL-OLo"/>
                             <constraint firstItem="Dpk-F8-dez" firstAttribute="width" secondItem="l3H-y0-AEh" secondAttribute="width" id="dEw-22-20r"/>
                             <constraint firstItem="ahu-i8-nV5" firstAttribute="top" secondItem="Dpk-F8-dez" secondAttribute="bottom" constant="60" id="gHE-lg-Qx4"/>
                             <constraint firstItem="Dpk-F8-dez" firstAttribute="top" secondItem="l3H-y0-AEh" secondAttribute="top" id="iLt-sH-BZj"/>
