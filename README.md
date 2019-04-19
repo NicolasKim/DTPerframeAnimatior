@@ -25,7 +25,11 @@ _animator.paused = YES; or _animator.paused = NO;
 _animator.paused = YES;
 _animator.progress = 0.5;
 ```
+## reverse progress increasing
 
+```
+_animator.progressDirection = DTPerframeAnimatiorDirectionBackward;
+```
 
 # Demo
 ![ScreenRecord](https://github.com/NicolasKim/DTPerframeAnimatior/blob/master/1555462981382.gif)

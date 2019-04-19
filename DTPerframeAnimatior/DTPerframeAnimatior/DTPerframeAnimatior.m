@@ -55,24 +55,31 @@
         _tmpStartTime = CACurrentMediaTime();
     }
 
+    CGFloat progress = 0;
     if (self.progressDirection == DTPerframeAnimatiorDirectionForward) {
-        _progress = (_tmpProgress / tan(M_PI_4) * self.duration + (CACurrentMediaTime() - _tmpStartTime))/self.duration * tan(M_PI_4);
+        progress = (_tmpProgress / tan(M_PI_4) * self.duration + (CACurrentMediaTime() - _tmpStartTime))/self.duration * tan(M_PI_4);
     } else {
-        _progress = (_tmpProgress / tan(M_PI_4) * self.duration - (CACurrentMediaTime() - _tmpStartTime))/self.duration * tan(M_PI_4);
+        progress = (_tmpProgress / tan(M_PI_4) * self.duration - (CACurrentMediaTime() - _tmpStartTime))/self.duration * tan(M_PI_4);
     }
     
     
-    if (_progress < 0) {
-        _progress = 0.0;
+    if (progress < 0) {
+        progress = 0.0;
         displayLink.paused = YES;
-        _tmpProgress = _progress;
+        _tmpProgress = progress;
         _tmpStartTime = 0.0;
-    } else if (_progress > 1.0) {
-        _progress = 1.0;
+    } else if (progress > 1.0) {
+        progress = 1.0;
         displayLink.paused = YES;
-        _tmpProgress = _progress;
+        _tmpProgress = progress;
         _tmpStartTime = 0.0;
     }
+    
+    if (_progress == progress) {
+        return;
+    }
+    
+    _progress = progress;
     
     if (self.animationHandle) {
         self.animationHandle(self.progress);
@@ -115,6 +122,10 @@
     _tmpProgress = progress;
     _tmpStartTime = 0.0;
     
+    if (_progress == progress) {
+        return;
+    }
+    
     _progress = progress;
 
     if (self.animationHandle) {
@@ -136,10 +147,6 @@
 
 -(void)setTempStartTime:(CFTimeInterval)time{
     _tmpStartTime = time;
-}
-
--(void)dealloc{
-    NSLog(@"target 销毁");
 }
 
 @end
@@ -208,7 +215,6 @@
 }
 
 -(void)dealloc{
-    NSLog(@"animator 销毁");
     if (_displayLink) {
         [_displayLink invalidate];
         _displayLink = nil;
