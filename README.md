@@ -30,7 +30,7 @@ _animator.progress = 0.5;
 ```
 _animator.progressDirection = DTPerframeAnimatiorDirectionBackward;
 ```
-#Example timeline
+# Example timeline
 ![timeline](https://github.com/NicolasKim/DTPerframeAnimatior/blob/master/timeline.png)
 # Demo
 ![ScreenRecord](https://github.com/NicolasKim/DTPerframeAnimatior/blob/master/1555462981382.gif)
